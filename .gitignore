@@ -16,6 +16,7 @@ project.lock.json
 /packages
 /TestResults
 /node_modules
+package-lock.json
 
 /tools/NuGet.exe
 /App_Data
