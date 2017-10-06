@@ -20,8 +20,8 @@ module.exports = function (context, req) {
 
         let startDate = new Date();
         let expiryDate = new Date(startDate);
-        expiryDate.setMinutes(startDate.getMinutes() + process.env.ApolloTokenDurationMinutes);
-        
+        expiryDate.setMinutes(startDate.getMinutes() + parseInt(process.env.ApolloTokenDurationMinutes));
+
         let sharedAccessPolicy = {
             AccessPolicy: {
                 Permissions: azure.BlobUtilities.SharedAccessPermissions.WRITE,
@@ -55,7 +55,7 @@ function isValidFileType(mimeType){
 }
 
 function isValidSize(fileSize){
-    return (fileSize <= process.env.ApolloMaxFileSizeBytes);
+    return (fileSize <= parseInt(process.env.ApolloMaxFileSizeBytes));
 }
 
 function generateBlobName(mimeType, fileName){
