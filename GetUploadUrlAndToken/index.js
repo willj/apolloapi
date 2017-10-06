@@ -14,13 +14,13 @@ module.exports = function (context, req) {
 
     if ( isValidFileType(mimeType) && isValidSize(fileSize) ) {
 
-        const blobService = azure.createBlobService(process.env["ConnectionStrings:AzureStorageConnectionString"]);
+        const blobService = azure.createBlobService(process.env.AzureStorageConnectionString);
         const containerName = process.env.ApolloContainerName;
         const blobName = generateBlobName(mimeType, uuid);
 
         let startDate = new Date();
         let expiryDate = new Date(startDate);
-        expiryDate.setMinutes(startDate.getMinutes() + parseInt(process.env.ApolloTokenDurationMinutes));
+        expiryDate.setMinutes(startDate.getMinutes() + process.env.ApolloTokenDurationMinutes);
         
         let sharedAccessPolicy = {
             AccessPolicy: {
@@ -55,7 +55,7 @@ function isValidFileType(mimeType){
 }
 
 function isValidSize(fileSize){
-    return (fileSize <= parseInt(process.env.ApolloMaxFileSizeBytes));
+    return (fileSize <= process.env.ApolloMaxFileSizeBytes);
 }
 
 function generateBlobName(mimeType, fileName){
