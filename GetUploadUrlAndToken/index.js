@@ -1,5 +1,5 @@
 const azure = require('azure-storage');
-const uuid = require('uuid/v1')();
+const uuid = require('uuid/v4');
 const supportedFileTypes = ["image/png", "image/jpeg", "image/gif", "image/webp"];
 const fileExtensions = {
     "image/png": "png",
@@ -16,7 +16,7 @@ module.exports = function (context, req) {
 
         const blobService = azure.createBlobService(process.env.AzureStorageConnectionString);
         const containerName = process.env.ApolloContainerName;
-        const blobName = generateBlobName(mimeType, uuid);
+        const blobName = generateBlobName(mimeType, uuid());
 
         let startDate = new Date();
         let expiryDate = new Date(startDate);
