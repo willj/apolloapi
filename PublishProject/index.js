@@ -51,15 +51,17 @@ module.exports = function (context, req) {
     tableService.insertEntity(process.env.ApolloTableName, entity,  (err, result, response)  => {
         if (!err){
             context.res = {
-                id: project.id
+                body: { id: project.id }
             };
+            context.done();
         } else {
             context.res = {
                 status: 500,
                 body: 'Unable to save project'
             };
+            context.done();
         }
     });
 
-    context.done();
+    
 };
