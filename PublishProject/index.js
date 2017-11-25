@@ -2,8 +2,6 @@ const azure = require('azure-storage');
 const uuid = require('uuid/v4');
 
 module.exports = function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
-
     let project = req.body;
 
     if (!project.title || project.items.length < 1){
