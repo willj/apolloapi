@@ -41,7 +41,7 @@ module.exports = function (context, req) {
     });
 
     const entity = {
-        PartitionKey: entityGen.String('apollo'),
+        PartitionKey: entityGen.String(process.env.ApolloPartitionKey),
         RowKey: entityGen.String(project.id),
         Project: entityGen.String(JSON.stringify(project))
     };
