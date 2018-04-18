@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/willj/apolloapi#readme",
   "dependencies": {
-    "azure-storage": "^2.5.0",
+    "azure-storage": "^2.8.1",
     "uuid": "^3.1.0"
   }
 }

@@ -4,6 +4,8 @@ const uuid = require('uuid/v4');
 module.exports = function (context, req) {
     let project = req.body;
 
+    project.items = project.items || project.files;
+
     if (!project.title || project.items.length < 1){
         context.res = {
             status: 400,
