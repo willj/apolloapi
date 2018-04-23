@@ -28,6 +28,11 @@ module.exports = function (context, req) {
 
     project.id = uuid().substr(0,8);
 
+    // new version stores files rather than items
+    if (project.files){
+        delete project.items;
+    }
+
     const tableService = azure.createTableService(process.env.AzureStorageTableConnectionString);
     const entityGen = azure.TableUtilities.entityGenerator;
 
